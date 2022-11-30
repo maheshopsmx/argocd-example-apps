@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: issuegen-app-preview
+  labels:
+    app: issuegen-app
+spec:
+  selector:
+    app: issuegen-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8088
+  type: ClusterIP

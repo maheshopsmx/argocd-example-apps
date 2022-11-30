@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: issuegen
-          image: docker.io/opsmxdev/issuegen:v3.0.9
+          image: docker.io/opsmxdev/issuegen:v3.0.6
           imagePullPolicy: Always
           ports:
             - containerPort: 8088

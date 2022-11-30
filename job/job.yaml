@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mahesh-job
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  template:
+    spec:
+      containers:
+      - command: ["sleep", "10"]
+        image: curlimages/curl
+        imagePullPolicy: IfNotPresent
+        name: maheshjob
+      restartPolicy: OnFailure

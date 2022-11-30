@@ -6,8 +6,14 @@ spec:
   podManagementPolicy: OrderedReady
   replicas: 1
   revisionHistoryLimit: 10
-  serviceName: argocd-application-controller
+  selector:
+    matchLabels:
+      app: {{ template "helm-guestbook.name" . }}
+  serviceName: {{ template "helm-guestbook.fullname" . }}
   template:
+    metadata:
+      labels:
+        app: {{ template "helm-guestbook.name" . }}
     spec:
       containers:
       - command: ["sleep", "2d"]

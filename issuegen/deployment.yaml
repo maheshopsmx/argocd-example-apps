@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: issuegen-deployment
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: issuegen-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: issuegen-app
+    spec:
+      containers:
+        - name: rollouts-baseline
+          image: docker.io/opsmxdev/issuegen:v3.0.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8088

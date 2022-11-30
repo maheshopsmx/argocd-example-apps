@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mahesh-job
+spec:
+  template:
+    spec:
+      containers:
+      - command: ["sleep", "1d"]
+        image: quay.io/argoproj/argocd:v2.5.3
+        imagePullPolicy: IfNotPresent
+        name: maheshjob
+      restartPolicy: OnFailure

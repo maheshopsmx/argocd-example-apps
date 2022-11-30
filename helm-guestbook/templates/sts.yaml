@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: maheshs-sts
+  annotations:
+    argocd.argoproj.io/sync-options: PruneLast=true
 spec:
   podManagementPolicy: OrderedReady
   replicas: 1

@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: issuegen-template
+spec:
+  args:
+    - name: preview-hash
+    - name: baseline-hash
+  metrics:
+    - name: isd-analysis
+      initialDelay: 10s
+      provider:
+        job:
+          spec:
+            backoffLimit: 2
+            template:
+              spec:
+                serviceAccountName: job-acc2
+                containers:
+                - name: opsmx-analysis-container
+                  image: 'quay.io/opsmxpublic/argo-isd-metric-provider-job:v2' 
+                  imagePullPolicy: Always
+                  env:
+                    - name: MY_POD_NAME
+                      valueFrom:
+                        fieldRef:
+                          fieldPath: metadata.name
+                    - name: STABLE_POD_HASH
+                      value: "{{args.baseline-hash}}"
+                    - name: LATEST_POD_HASH
+                      value: "{{args.preview-hash}}"
+                  volumeMounts:
+                    - name: secret-config-volume
+                      mountPath: /etc/config/secrets
+                      readOnly: true
+                    - name: provider-config-volume
+                      mountPath: /etc/config/provider
+                restartPolicy: Never
+                volumes:
+                - name: secret-config-volume
+                  secret:
+                    secretName: opsmx-profile
+                    optional: false
+                - name: provider-config-volume
+                  configMap:
+                    name: issuegen-metrics

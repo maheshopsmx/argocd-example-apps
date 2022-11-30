@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: maheshs-sts
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  serviceName: argocd-application-controller
+  template:
+    spec:
+      containers:
+      - command: ["sleep", "2d"]
+        env:
+        - name: ARGOCD_CONTROLLER_REPLICAS
+          value: "1"
+        image: quay.io/argoproj/argocd:v2.5.3
+        imagePullPolicy: Always
+        name: mahesh-sts-pod
+        ports:
+        - containerPort: 8082
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 8082
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate

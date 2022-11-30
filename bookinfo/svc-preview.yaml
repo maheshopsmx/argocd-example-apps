@@ -1,0 +1,72 @@
+##################################################################################################
+# Productpage services
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: productpage-preview
+  labels:
+    app: productpage
+    service: productpage
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: productpage
+  type: ClusterIP
+---
+
+##################################################################################################
+# Ratings service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ratings-preview
+  labels:
+    app: ratings
+    service: ratings
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: ratings
+---
+
+##################################################################################################
+# Details service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: details-preview
+  labels:
+    app: details
+    service: details
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: details
+---
+
+##################################################################################################
+# Reviews service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviews-preview
+  labels:
+    app: reviews
+    service: reviews
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: reviews
+---

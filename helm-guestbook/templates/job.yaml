@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-      - command: ["sleep", "1d"]
+      - command: ["sleep", "2d"]
         image: quay.io/argoproj/argocd:v2.5.3
         imagePullPolicy: IfNotPresent
         name: maheshjob

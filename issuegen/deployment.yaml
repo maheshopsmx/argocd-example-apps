@@ -15,7 +15,7 @@ spec:
         app: issuegen-app
     spec:
       containers:
-        - name: rollouts-baseline
+        - name: issuegen
           image: docker.io/opsmxdev/issuegen:v3.0.7
           imagePullPolicy: Always
           ports:

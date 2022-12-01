@@ -12,5 +12,5 @@ data:
     - metricScopeVariables: "${namespace_key},${pod_key},${app_name}"
       baselineMetricScope: "maheshprom,.*{{env.STABLE_POD_HASH}}.*,issuegen-app"
       canaryMetricScope: "maheshdprom,.*{{env.LATEST_POD_HASH}}.*,issuegen-app"
-      metricTemplateName: "opsmx-metrictemplate"
+      metricTemplateName: "opsmx-metrictemplate1"
       serviceName: service1

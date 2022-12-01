@@ -19,6 +19,7 @@ spec:
       prePromotionAnalysis:
         templates:
           - templateName: issuegen-template
+          - templateName: load-executor-jmeter-job
         args:
           - name: baseline-hash
             valueFrom:

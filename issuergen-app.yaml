@@ -4,7 +4,7 @@ metadata:
   name: issuegen-rollouts
 spec:
   destination:
-    namespace: maheshdata1
+    namespace: maheshprom
     server: https://kubernetes.default.svc
   project: default
   source:

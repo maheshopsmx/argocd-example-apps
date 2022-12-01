@@ -13,7 +13,7 @@ spec:
               spec:
                 containers:
                 - name: isdjob
-                  command: ["/opt/apache-jmeter-5.5/bin/jmeter.sh", "-n", "-t", "/etc/config/scripts/ArgoAPI.jmx", "-l", "/tmp/report.out", "-j", "/tmp/tmp.out"]
+                  command: ["/opt/apache-jmeter-5.5/bin/jmeter.sh", "-n", "-t", "/etc/config/scripts/canary.jmx", "-l", "/tmp/report.out", "-j", "/tmp/tmp.out"]
                   image: docker.io/justb4/jmeter:latest
                   imagePullPolicy: Always
                   volumeMounts:

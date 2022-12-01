@@ -10,7 +10,7 @@ data:
     passScore: 90
     serviceList: 
     - metricScopeVariables: "${namespace_key},${pod_key},${app_name}"
-      baselineMetricScope: "maheshdata1,.*{{env.STABLE_POD_HASH}}.*,issuegen-app"
-      canaryMetricScope: "maheshdata1,.*{{env.LATEST_POD_HASH}}.*,issuegen-app"
+      baselineMetricScope: "maheshprom,.*{{env.STABLE_POD_HASH}}.*,issuegen-app"
+      canaryMetricScope: "maheshdprom,.*{{env.LATEST_POD_HASH}}.*,issuegen-app"
       metricTemplateName: "opsmx-metrictemplate"
       serviceName: service1

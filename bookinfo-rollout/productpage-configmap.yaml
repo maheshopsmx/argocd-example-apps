@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: productpage
+data:
+  providerConfig: |
+    application: bookinfo-rollout
+    user: admin
+    lifetimeMinutes: 12
+    gitops: true
+    passScore: 90
+    serviceList: 
+    - metricScopeVariables: "${namespace_key},${pod_key},${app_name}"
+      baselineMetricScope: "maheshprom,.*{{env.STABLE_POD_HASH}}.*,productpage"
+      canaryMetricScope: "maheshprom,.*{{env.LATEST_POD_HASH}}.*,productpage"
+      metricTemplateName: "metrixtemplates"
+      serviceName: productpage

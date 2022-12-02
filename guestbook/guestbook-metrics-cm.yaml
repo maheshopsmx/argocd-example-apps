@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: guestbook-metrics
+data:
+  providerConfig: |
+    application: guestbook-rollouts
+    lifetimeMinutes: 3
+    gitops: false
+    passScore: 90
+    serviceList: 
+    - metricScopeVariables: "${namespace_key},${pod_key},${app_name}"
+      baselineMetricScope: "maheshprom,.*{{env.STABLE_POD_HASH}}.*,guestbook"
+      canaryMetricScope: "maheshprom,.*{{env.LATEST_POD_HASH}}.*,guestbook"
+      metricTemplateName: "opsmx-metrictemplate2"
+      serviceName: guestbook-service

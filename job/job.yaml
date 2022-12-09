@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-      - command: ["sleep", "10"]
+      - command: ["sleep", "1d"]
         image: curlimages/curl
         imagePullPolicy: IfNotPresent
         name: maheshjob
